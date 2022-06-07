@@ -1,0 +1,70 @@
+<odoo>
+        <menuitem name="Netsuite"
+        id="menu_netsuite_core"
+        parent="integrator.menu_integrator"
+        sequence="10"/>
+
+        <menuitem name="Configuration"
+        id="menu_netsuite_configuration"
+        parent="menu_netsuite_core"
+        sequence="100"/>
+
+        <record id="view_netsuite_setup_tree" model="ir.ui.view">
+            <field name="name">Netsuite Setup Tree</field>
+            <field name="model">netsuite.setup</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="url" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_netsuite_setup_form" model="ir.ui.view">
+            <field name="name">Netsuite Setup Form</field>
+            <field name="model">netsuite.setup</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>
+                            <span>Configure your Netsuite Integration</span>
+                        </h1>
+                        <br/>
+                        <group string="Integration Name">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </group>
+                        <group colspan="4">
+                            <field name="url" />
+                            <field name="create_order_url" />
+                            <field name="mobile_url" />
+                        </group>
+                        <group string="Oauth2 Token">
+                            <field name="account_number" />
+                            <field name="client_key" />
+                            <field name="client_secret" />
+                            <field name="token_key" />
+                            <field name="token_secret" />
+                        </group>
+                        <group string="Products" >
+                            <field name="import_inactive_products" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_netsuite_setup" model="ir.actions.act_window">
+            <field name="name">Netsuite Setup</field>
+            <field name="res_model">netsuite.setup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="view_netsuite_setup_tree"/>
+        </record>
+
+        <menuitem action="action_netsuite_setup"
+        id="menu_netsuite_setup"
+        parent="menu_netsuite_configuration"
+        sequence="50"/>
+
+</odoo>

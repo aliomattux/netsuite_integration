@@ -1,0 +1,31 @@
+<odoo>
+
+        <record id="view_netsuite_generic_mapping_tree" model="ir.ui.view">
+            <field name="name">Netsuite Generic Mapping Tree</field>
+            <field name="model">generic.mapping</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name" />
+                    <field name="netsuite_name" />
+                    <field name="netsuite_id" />
+                    <field name="mage_name" />
+                    <field name="mage_id" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_netsuite_generic_mapping" model="ir.actions.act_window">
+            <field name="name">Generic NS Mage Mapping</field>
+            <field name="res_model">generic.mapping</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_netsuite_generic_mapping_tree"/>
+        </record>
+
+        <menuitem action="action_netsuite_generic_mapping"
+        id="menu_netsuite_generic_mapping"
+        parent="menu_netsuite_configuration"
+        sequence="5"/>
+
+</odoo>

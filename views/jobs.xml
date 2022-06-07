@@ -1,0 +1,63 @@
+<odoo>
+        <menuitem name="Jobs"
+        id="menu_netsuite_jobs"
+        parent="menu_netsuite_core"
+        sequence="40"/>
+
+        <record id="view_netsuite_job_tree" model="ir.ui.view">
+            <field name="name">Netsuite Job Tree</field>
+            <field name="model">netsuite.job</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="netsuite_job_form" model="ir.ui.view">
+            <field name="name">External Jobs Form</field>
+            <field name="model">netsuite.job</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="button_execute_job" type="object" string="Execute Job" />
+                        <button name="button_schedule_netsuite_job" type="object" string="Schedule this Job" attrs="{'invisible': [('scheduler', '!=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" class="oe_inline" />
+                        </h1>
+                        <group colspan="2" name="netsuite_parameters">
+                            <field name="netsuite_instance" />
+                            <field name="url" />
+                            <field name="search_id" />
+                            <field name="second_search_id" />
+                            <field name="record_type" />
+                            <field name="mapping" />
+                        </group>
+                        <group colspan="2" name="standard_configuration">
+                            <separator string="Job Configuration" />
+                            <field name="scheduler" readonly="1"/>
+                            <newline/>
+                            <field name="python_model" required="1" />
+                            <field name="python_function_name" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_netsuite_job" model="ir.actions.act_window">
+            <field name="name">Jobs</field>
+            <field name="res_model">netsuite.job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="view_netsuite_job_tree"/>
+        </record>
+
+        <menuitem action="action_netsuite_job"
+        id="menu_netsuite_job"
+        parent="menu_netsuite_jobs"
+        sequence="10"/>
+
+</odoo>

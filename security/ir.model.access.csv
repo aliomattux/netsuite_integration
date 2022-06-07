@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_generic_mapping,generic.mapping,model_generic_mapping,,1,1,1,1
+access_netsuite_job,netsuite.job,model_netsuite_job,,1,1,1,1
+access_netsuite.setup,netsuite.setup,model_netsuite_setup,,1,1,1,1
